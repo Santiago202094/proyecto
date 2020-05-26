@@ -1,0 +1,31 @@
+.app-header{
+	background:url("{% static 'img/ciudad.jpg' %}") no-repeat center top fixed;
+	font-family: 'Avenir', Futura, Helvetica, sans-serif ;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	padding-bottom: 80px;
+}
+.app-navbar{
+	background: rgba(0,0,0,0.6);
+	border-radius: 0;
+}
+.app-link{
+	color: white;
+	text-shadow: none;
+}
+.app-link:hover{
+	color: white;
+}
+.app-nav>li>a{
+	color: white;
+	text-shadow: none;
+
+}
+.app-nav>li>a:hover{
+	color: white;
+	background-color: black;
+
+}
+.app-icon{
+	background: white;
+}

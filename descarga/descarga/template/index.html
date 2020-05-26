@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Small Notification</title>
+
+	{% load bootstrap4 %}
+	{# CSS Bootstrap #}
+	{% bootstrap_css %}
+	{% bootstrap_javascript jquery='full' %}
+	{% load fontawesome_5 %}
+	{% fontawesome_5_static %} 
+ 
+	{%load static%}
+ 
+	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}"> 
+ 
+	 <!-- Importacion del jQuery -->
+	 
+ 
+	 <script src="{% static 'js/lib/TweenMax.min.js' %}"></script>
+ 
+	 <script src="{% static 'js/smallBox.js' %}"></script>
+	 
+	 <!-- Importacion del Bootstrap -->
+ 
+ 
+	 <link rel="stylesheet" href="{% static 'css/style.css' %}">
+	 
+	
+ 
+
+
+
+
+	
+
+	<!-- Importacion del jQuery -->
+
+
+</head>
+<body>
+	
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$.smallBox({
+			titulo: 'Plugins¡',
+			subtitulo: 'Precio $:',
+			contenido: 'Desarrollador LG',
+			fa: "fa fa-bell-o",
+			fa2: "fa fa-envelope-o",
+			img:       'img/avatar.png',
+			colorboxone: 'red',
+		});
+	});
+</script>
+</body>
+
+</html>

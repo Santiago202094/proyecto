@@ -1,0 +1,242 @@
+
+<!DOCTYPE>
+<html lang="esp">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    {# Cargamos la librería #}
+   {% load bootstrap4 %}
+   {# CSS Bootstrap #}
+   {% bootstrap_css %}
+   {% bootstrap_javascript jquery='full' %}
+   {% load fontawesome_5 %}
+   {% fontawesome_5_static %} 
+
+   {%load static%}
+
+   <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}"> 
+
+    <!-- Importacion del jQuery -->
+	
+
+	<script src="{% static 'js/lib/TweenMax.min.js' %}"></script>
+
+	<script src="{% static 'js/smallBox.js' %}"></script>
+	
+	<!-- Importacion del Bootstrap -->
+
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    
+  
+
+	<!-- Importacion del imagenes -->
+	
+
+<style>
+    body{
+        background-color: black;
+       
+    }
+
+
+.youtube-player iframe {
+
+    position: absolute;
+    margin-top: 60px;
+    margin-left: 5px;
+   float: left;
+    width: 90%;
+    height: auto;
+    z-index: 100;
+    background: transparent;
+}
+
+.youtube-player img {
+   
+    bottom: 0;
+    display: block;
+    left: 0;
+    margin: auto;
+    max-width: 90%;
+    position: relative;
+    right: 0;
+    top: 0;
+    border-style: solid; border-width: 3px;
+    border-color:#042f66;
+    height: auto;
+    cursor: pointer;
+    -webkit-transition: .4s all;
+    -moz-transition: .4s all;
+    transition: .4s all;
+
+
+}
+
+.youtube-player img:hover {
+    -webkit-filter: brightness(85%);
+}
+
+.youtube-player .play {
+ 
+    height: 72px;
+    width: 72px;
+    left: 50%;
+    top: 50%;
+    margin-left: -36px;
+    margin-top: -36px;
+    position: absolute;
+    background: url("http://i.imgur.com/TxzC70f.png") no-repeat;
+    cursor: pointer;
+}
+#desmp3{
+    margin-left: 40px;
+}
+.botones-accion{
+    margin-top: 10px;
+    margin-left: 120px;
+}
+h1{
+    background: 	#042f66;
+    color: white;
+}
+
+</style>
+    <script>
+        document.addEventListener("DOMContentLoaded",
+        function() {
+        var div, n,
+        v = document.getElementsByClassName("youtube-player");
+        for (n = 0; n < v.length; n++) {
+        div = document.createElement("div");
+        div.setAttribute("data-id", v[n].dataset.id);
+        div.innerHTML = labnolThumb(v[n].dataset.id);
+        div.onclick = labnolIframe;
+        v[n].appendChild(div);
+        }
+        });
+        
+       function labnolThumb(id) {
+        var thumb = '<img src="https://i.ytimg.com/vi/ID/hqdefault.jpg">',
+        play = '<div class="play"></div>';
+        return thumb.replace("ID", id) + play;
+        }
+        
+        function labnolIframe() {
+        var iframe = document.createElement("iframe");
+        var embed = "https://www.youtube.com/embed/ID?autoplay=1";
+        iframe.setAttribute("src", embed.replace("ID", this.dataset.id));
+        iframe.setAttribute("frameborder", "0");
+        iframe.setAttribute("allowfullscreen", "1");
+        this.parentNode.replaceChild(iframe, this);
+        }
+        </script>      
+</head>
+<body>
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-2">PUBLICIDAD</div>
+        <div class="col-xs-12 col-sm-8" id="menu"><h1><CENTER>DESCARGA TUS VIDEOS FAVORITOS</CENTER> </h1>
+            
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="#">#Quédate en casa</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+              
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                      <a class="nav-link" href="#">Inicio <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Opciones
+                      </a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Descargar para PC</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                      </div>
+                    </li>
+                  </ul>
+                <form class="form-inline my-2 my-lg-0" action="/download/" method="get">
+                        <input class="form-control mr-sm-1" type="search"  placeholder="Url video" name="link" id="input">
+                        <button class="btn btn-outline-info my-2 my-sm-0" type="submit" id="buscar">Search</button>
+                    </form>
+                 
+                </div>
+              </nav>
+
+              <div id="inferior" class="col-xs-12 col-sm-8" >Video
+                <div  class="youtube-player " data-id="{{luego}}" ></div>
+                    <div class="botones-accion">                
+                        <form class="form-inline my-2 my-lg-0" action="/download2/" method="get">
+                            <input  hidden class="form-control mr-sm-1"  name="link" value="{{desg}}">
+                            <button  id="des"  type="submit" class="btn btn-outline-info mb-2" value="video" name="vid"  ><i class="fas fa-arrow-circle-down 2x" ></i>Descargar Video</button>
+                            <button  id="desmp3"  type="submit" class="btn btn-outline-info mb-2" value="mp3" name="vid"><i class="fas fa-arrow-circle-down 2x" ></i>Mp3</button>    
+                        </form>
+                       <div class="videodescargado" id="{{confirmacion}}"></div>
+                    </div>            
+              </div>    
+
+        </div>
+        <div class="col-xs-12 col-sm-2">PUBLICIDAD</div>
+    </div>
+    <script>
+         $(document).ready(function(){
+
+        var confir=$('.videodescargado').attr('id');
+        
+        if (confir=="true") {
+            console.log(confir);  
+        var html="img/foto.jpg";
+		$.smallBox({
+			titulo: 'Descarga realizada con éxito',
+			subtitulo: 'Gracias :',
+			contenido: 'Desarrollador LG',
+			fa: '<i class="fas fa-arrow-circle-down 2x" ></i>',
+			fa2: '<i class="fas fa-arrow-circle-down 2x" ></i>',
+			img:'',
+			colorboxone: '#042f66',
+        });
+            
+        } else if(confir=="Vuelve a introducir el url") {
+        
+        var html="img/foto.jpg";
+		$.smallBox({
+			titulo: '!Error..!',
+			subtitulo: 'Url incorrecto, pega otra vez :',
+			contenido: 'Desarrollador LG',
+			fa: '<i class="fas fa-arrow-circle-down 2x" ></i>',
+			fa2: '<i class="fas fa-arrow-circle-down 2x" ></i>',
+			img:html,
+			colorboxone: '#042f66',
+        });
+        }
+      
+         }   
+        
+	);
+    </script>
+   
+    
+</body>
+
+
+</html>
+<script>  
+       $("#buscar").on("click",function(){
+           functiona(event){
+           event.preventDefault();
+           }
+           $('#des').show(); 
+       $('#desmp3').show(); 
+       $('.youtube-player').show(); 
+      
+   }); 
+   </script>
+
+     
